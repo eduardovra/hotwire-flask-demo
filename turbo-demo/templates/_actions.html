@@ -1,0 +1,12 @@
+<form method="POST" action="{{ url_for('action_append') }}">
+  <fieldset>
+    <legend>Append</legend>
+    <label for="target-id">Target ID</label>
+    <input id="target-id" name="target-id" />
+
+    <label for="item-id">Item ID</label>
+    <input id="item-id" name="item-id" />
+
+    <input type="submit" value="Append" />
+  </fieldset>
+</form>
