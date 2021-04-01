@@ -1,13 +1,12 @@
 {% for frame, items in frame_items.items() %}
-
-<div>
-  <p>Target: {{ frame }}</p>
-    <ul>
-      <turbo-frame id="{{ frame }}">
-        {% for item in items %}
-          {% include '_frame_item.html' %}
-        {% endfor %}
-      </turbo-frame>
-    </ul>
-</div>
+  <div>
+    <p>Target: {{ frame }}</p>
+      <ul>
+        <turbo-frame id="{{ frame }}">
+          {% for item in items %}
+            {% include '_frame_item.html' %}
+          {% endfor %}
+        </turbo-frame>
+      </ul>
+  </div>
 {% endfor %}
