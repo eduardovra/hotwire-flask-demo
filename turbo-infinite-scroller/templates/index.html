@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+  <head>
+    {{ turbo() }}
+  </head>
+  <body>
+    <h1>
+      Hotwire-Flask Infinite Scroller
+    </h1>
+    <h2>
+      Images loaded: <turbo-frame id="counter">{{ counter }}</turbo-frame>
+    </h2>
+    <div style="flex-direction: column;">
+      <turbo-frame id="images">
+        <!-- <img src="{{ url_for('static', filename='spinner.gif') }}" /> -->
+        {% include '_image.html' %}
+      </turbo-frame>
+
+      <turbo-frame id="button">
+        <form action="/get-image" method="post">
+          <input type="submit" value="Load more" style="margin: 4px 2px;">
+        </form>
+      </turbo-frame>
+    </div>
+  </body>
+</html>
