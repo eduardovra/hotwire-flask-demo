@@ -8,24 +8,29 @@
     >
 
     {{ turbo() }}
+
+    <meta charset="utf-8">
+    <script src="https://unpkg.com/stimulus/dist/stimulus.umd.js"></script>
+    <script>
+      (() => {
+        const application = Stimulus.Application.start()
+
+        application.register("hello", class extends Stimulus.Controller {
+          static get targets() {
+            return [ "name" ]
+          }
+        })
+      })()
+    </script>
   </head>
   <body>
     <h1>
       Hotwire-Flask Form Validation
     </h1>
 
-    <form action="{{ url_for('signup') }}" method="post" class="m-5">
-      <div class="form-group">
-        <label for="email">E-mail</label>
-        <input type="text" class="form-control is-valid" name="email" placeholder="someone@something.com" />
-        <div class="valid-feedback">
-          E-mail is not registered!
-        </div>
-        <div class="invalid-feedback">
-          E-email already registered!
-        </div>
-      </div>
+    <h2>Please fill the form</h2>
 
+    <form action="{{ url_for('signup') }}" method="POST" class="m-5">
       <div class="form-group">
         <label for="username">Username</label>
         <input type="text" class="form-control is-invalid" name="username" placeholder="username" />
@@ -45,8 +50,15 @@
       </div>
 
       <div class="form-group">
-        <button type="submit" class="btn btn-primary">Sign Up</button>
+        <button type="submit" class="btn btn-primary" data-turbo="false">Sign Up</button>
       </div>
     </form>
+
+    <h2>Registered users</h2>
+    <ul>
+      {% for user in users %}
+        {% include '_user.html' %}
+      {% endfor %}
+    </ul>
   </body>
 </html>
