@@ -9,9 +9,8 @@ sequence = 0
 @app.route("/", methods=["GET",])
 def index():
     global sequence
-    sequence = 1
 
-    return render_template("index.html", counter=sequence, seq=sequence)
+    return render_template("index.html", counter=sequence)
 
 @app.route("/add-image", methods=["POST",])
 def add_image():

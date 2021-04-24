@@ -13,7 +13,9 @@
     </h2>
 
     <turbo-frame id="images">
-      {% include '_image_loader.html' %}
+      {% for seq in range(0, counter) %}
+        {% include '_image_loader.html' %}
+      {% endfor %}
     </turbo-frame>
 
     <turbo-frame id="button">
