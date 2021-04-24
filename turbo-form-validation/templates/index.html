@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    >
+
+    {{ turbo() }}
+  </head>
+  <body>
+    <h1>
+      Hotwire-Flask Form Validation
+    </h1>
+
+    <form action="{{ url_for('signup') }}" method="post" class="m-5">
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="text" class="form-control is-valid" name="email" placeholder="someone@something.com" />
+        <div class="valid-feedback">
+          E-mail is not registered!
+        </div>
+        <div class="invalid-feedback">
+          E-email already registered!
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control is-invalid" name="username" placeholder="username" />
+        <div class="invalid-feedback">
+          Username already registered!
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" name="password" placeholder="********" />
+      </div>
+
+      <div class="form-group">
+        <label for="confirm-password">Confirm Password</label>
+        <input type="password" class="form-control" name="confirm-password" placeholder="********" />
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+      </div>
+    </form>
+  </body>
+</html>
