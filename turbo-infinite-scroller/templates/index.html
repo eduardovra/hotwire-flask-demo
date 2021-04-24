@@ -5,22 +5,21 @@
   </head>
   <body>
     <h1>
-      Hotwire-Flask Infinite Scroller
+      Hotwire-Flask Image Loader
     </h1>
+
     <h2>
       Images loaded: <turbo-frame id="counter">{{ counter }}</turbo-frame>
     </h2>
-    <div style="flex-direction: column;">
-      <turbo-frame id="images">
-        <!-- <img src="{{ url_for('static', filename='spinner.gif') }}" /> -->
-        {% include '_image.html' %}
-      </turbo-frame>
 
-      <turbo-frame id="button">
-        <form action="/get-image" method="post">
-          <input type="submit" value="Load more" style="margin: 4px 2px;">
-        </form>
-      </turbo-frame>
-    </div>
+    <turbo-frame id="images">
+      {% include '_image_loader.html' %}
+    </turbo-frame>
+
+    <turbo-frame id="button">
+      <form action="/add-image" method="post">
+        <input type="submit" value="Load more" style="margin: 4px 2px;">
+      </form>
+    </turbo-frame>
   </body>
 </html>
