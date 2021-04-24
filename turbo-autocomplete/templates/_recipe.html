@@ -1,0 +1,7 @@
+<turbo-frame id="recipe">
+  {% for ingredient, amount in recipe.items() %}
+    <li>{{ ingredient }}: {{ amount }} [<a href="{{ url_for('exclude', ingredient=ingredient) }}">exclude</a>]</li>
+  {% else %}
+    No ingredients yet
+  {% endfor %}
+</turbo-frame>

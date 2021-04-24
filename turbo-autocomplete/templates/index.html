@@ -20,9 +20,10 @@
             return [ "ingredient" ]
           }
 
-          add() {
+          search() {
             //debugger
-            console.log(event.currentTarget.textContent.trim())
+            //console.log(event.currentTarget.textContent.trim())
+            console.log(this.ingredientTarget.value)
           }
         })
       })()
@@ -35,33 +36,19 @@
 
     <div style="display: flex; justify-content: space-around;"">
       <div>
-        <h2>
-          Select ingredient for recipe
-        </h2>
-        <div data-controller="autocomplete" class="autocomplete">
-          <input type="text" name="ingredient" placeholder="Type name" data-autocomplete-target="ingredient" />
-          <div class="autocomplete-items">
-            <div data-action="click->autocomplete#add">
-              <strong>B</strong>anana
-            </div>
-            <div data-action="click->autocomplete#add">
-              <strong>B</strong>read
-            </div>
-            <div data-action="click->autocomplete#add">
-              <strong>B</strong>utter
-            </div>
+        <h2>Select ingredient for recipe</h2>
+
+        <div data-controller="autocomplete">
+          <input type="text" placeholder="Type name" data-autocomplete-target="ingredient" data-action="autocomplete#search" />
+          <div>
+            <turbo-frame id="autocomplete" src="{{ url_for('search') }}"></turbo-frame>
           </div>
         </div>
       </div>
 
       <div>
-        <h2>
-          Recipe
-        </h2>
-        <ul>
-          <li>Coconut: 1 [<a href="/exclude/coconut">exclude</a>]</li>
-          <li>Milk: 1 [<a href="/exclude/milk">exclude</a>]</li>
-        </ul>
+        <h2>Recipe</h2>
+        <ul>{% include '_recipe.html' %}</ul>
       </div>
     </div>
   </body>
