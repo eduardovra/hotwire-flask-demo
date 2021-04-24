@@ -1,4 +1,4 @@
-<turbo-frame id="autocomplete">
+<turbo-frame id="autocomplete-results">
   {% for ingredient in ingredients %}
     <div>
       <a href="{{ url_for('add', ingredient=ingredient.name) }}">

@@ -17,13 +17,17 @@
 
         application.register("autocomplete", class extends Stimulus.Controller {
           static get targets() {
-            return [ "ingredient" ]
+            return [ "results" ]
           }
 
-          search() {
-            //debugger
-            //console.log(event.currentTarget.textContent.trim())
-            console.log(this.ingredientTarget.value)
+          static get values() {
+            return { url: String }
+          }
+
+          search(event) {
+            const q = encodeURIComponent(event.target.value)
+            const url = this.urlValue.replace(/%s/g, q)
+            this.resultsTarget.src = url
           }
         })
       })()
@@ -38,11 +42,9 @@
       <div>
         <h2>Select ingredient for recipe</h2>
 
-        <div data-controller="autocomplete">
-          <input type="text" placeholder="Type name" data-autocomplete-target="ingredient" data-action="autocomplete#search" />
-          <div>
-            <turbo-frame id="autocomplete" src="{{ url_for('search') }}"></turbo-frame>
-          </div>
+        <div data-controller="autocomplete" data-autocomplete-url-value="{{ url_for('search') }}?q=%s">
+          <input type="search" placeholder="Type name" data-action="autocomplete#search" />
+          <turbo-frame id="autocomplete-results" data-autocomplete-target="results"></turbo-frame>
         </div>
       </div>
 

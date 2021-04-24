@@ -30,22 +30,14 @@ INGREDIENTS = ["avocado","apple","allspice","almonds","aspargus","aubergine","ar
 "yoghurt", "yeast", "zuchinni"]
 
 INGREDIENTS = [ingredient.capitalize() for ingredient in INGREDIENTS]
-
 recipe: DefaultDict[str, int] = defaultdict(int)
-
-recipe['Coconut'] = 1
-recipe['Milk'] = 2
 
 @app.route("/")
 def index():
-    global recipe
-
     return render_template("index.html", recipe=recipe)
 
 @app.route("/add/<ingredient>")
 def add(ingredient):
-    global recipe
-
     recipe[ingredient] += 1
 
     html = render_template('_recipe.html', recipe=recipe)
@@ -56,17 +48,18 @@ def add(ingredient):
 
 @app.route("/exclude/<ingredient>")
 def exclude(ingredient):
-    global recipe
-
     del recipe[ingredient]
 
     return render_template('_recipe.html', recipe=recipe)
 
 @app.route("/search")
 def search():
+    q = request.args.get("q")
+
     ingredients = [
-        {"name": ingredient, "strong": ingredient[0], "non_strong": ingredient[1:]}
+        {"name": ingredient, "strong": ingredient[:len(q)], "non_strong": ingredient[len(q):]}
         for ingredient in INGREDIENTS
+        if q and ingredient.lower().startswith(q.lower())
     ]
 
     return render_template('_autocomplete.html', ingredients=ingredients)
