@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    >
+
+    {{ turbo() }}
+
+    <meta charset="utf-8">
+    <script src="https://unpkg.com/stimulus/dist/stimulus.umd.js"></script>
+    <script>
+      (() => {
+        const application = Stimulus.Application.start()
+
+        application.register("autocomplete", class extends Stimulus.Controller {
+          static get targets() {
+            return [ "ingredient" ]
+          }
+
+          add() {
+            //debugger
+            console.log(event.currentTarget.textContent.trim())
+          }
+        })
+      })()
+    </script>
+  </head>
+  <body>
+    <h1>
+      Hotwire-Flask Autocomplete
+    </h1>
+
+    <div style="display: flex; justify-content: space-around;"">
+      <div>
+        <h2>
+          Select ingredient for recipe
+        </h2>
+        <div data-controller="autocomplete" class="autocomplete">
+          <input type="text" name="ingredient" placeholder="Type name" data-autocomplete-target="ingredient" />
+          <div class="autocomplete-items">
+            <div data-action="click->autocomplete#add">
+              <strong>B</strong>anana
+            </div>
+            <div data-action="click->autocomplete#add">
+              <strong>B</strong>read
+            </div>
+            <div data-action="click->autocomplete#add">
+              <strong>B</strong>utter
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h2>
+          Recipe
+        </h2>
+        <ul>
+          <li>Coconut: 1 [<a href="/exclude/coconut">exclude</a>]</li>
+          <li>Milk: 1 [<a href="/exclude/milk">exclude</a>]</li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
