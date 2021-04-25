@@ -1,11 +1,6 @@
 <!doctype html>
 <html>
   <head>
-    <link rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
-    >
     <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
 
     {{ turbo() }}
@@ -39,19 +34,23 @@
       Hotwire-Flask Autocomplete
     </h1>
 
-    <div style="display: flex; justify-content: space-around;" class="content">
+    <div style="display: flex;">
       <div style="flex: 1;">
         <h2>Add ingredient</h2>
 
         <div data-controller="search" data-search-url-value="{{ url_for('search') }}?q=%s">
-          <input type="search" placeholder="Type name" data-action="search#findResults" />
-          <turbo-frame id="search-results" data-search-target="results"></turbo-frame>
+          <div>
+            <input type="search" placeholder="Type name" data-action="search#findResults" />
+          </div>
+          <div>
+            <turbo-frame id="search-results" data-search-target="results"></turbo-frame>
+          </div>
         </div>
       </div>
 
       <div style="flex: 1;">
         <h2>Recipe</h2>
-        <ul class="list-group">
+        <ul>
           {% include '_recipe.html' %}
         </ul>
       </div>
