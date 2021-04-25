@@ -15,7 +15,7 @@
       (() => {
         const application = Stimulus.Application.start()
 
-        application.register("autocomplete", class extends Stimulus.Controller {
+        application.register("search", class extends Stimulus.Controller {
           static get targets() {
             return [ "results" ]
           }
@@ -24,7 +24,7 @@
             return { url: String }
           }
 
-          search(event) {
+          findResults(event) {
             const q = encodeURIComponent(event.target.value)
             const url = this.urlValue.replace(/%s/g, q)
             this.resultsTarget.src = url
@@ -42,15 +42,15 @@
       <div>
         <h2>Select ingredient for recipe</h2>
 
-        <div data-controller="autocomplete" data-autocomplete-url-value="{{ url_for('search') }}?q=%s">
-          <input type="search" placeholder="Type name" data-action="autocomplete#search" />
-          <turbo-frame id="autocomplete-results" data-autocomplete-target="results"></turbo-frame>
+        <div data-controller="search" data-search-url-value="{{ url_for('search') }}?q=%s">
+          <input type="search" placeholder="Type name" data-action="search#findResults" />
+          <turbo-frame id="search-results" data-search-target="results"></turbo-frame>
         </div>
       </div>
 
       <div>
         <h2>Recipe</h2>
-        <ul>{% include '_recipe.html' %}</ul>
+        <ul class="list-group">{% include '_recipe.html' %}</ul>
       </div>
     </div>
   </body>
