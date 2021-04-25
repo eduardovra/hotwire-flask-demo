@@ -6,6 +6,7 @@
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
     >
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
 
     {{ turbo() }}
 
@@ -38,9 +39,9 @@
       Hotwire-Flask Autocomplete
     </h1>
 
-    <div style="display: flex; justify-content: space-around;"">
-      <div>
-        <h2>Select ingredient for recipe</h2>
+    <div style="display: flex; justify-content: space-around;" class="content">
+      <div style="flex: 1;">
+        <h2>Add ingredient</h2>
 
         <div data-controller="search" data-search-url-value="{{ url_for('search') }}?q=%s">
           <input type="search" placeholder="Type name" data-action="search#findResults" />
@@ -48,9 +49,11 @@
         </div>
       </div>
 
-      <div>
+      <div style="flex: 1;">
         <h2>Recipe</h2>
-        <ul class="list-group">{% include '_recipe.html' %}</ul>
+        <ul class="list-group">
+          {% include '_recipe.html' %}
+        </ul>
       </div>
     </div>
   </body>

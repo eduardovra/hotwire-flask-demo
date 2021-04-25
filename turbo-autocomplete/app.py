@@ -7,7 +7,6 @@ from ingredients import INGREDIENTS
 
 app = Flask(__name__)
 turbo = Turbo(app)
-
 recipe: DefaultDict[str, int] = defaultdict(int)
 
 @app.route("/")
@@ -18,11 +17,7 @@ def index():
 def add(ingredient):
     recipe[ingredient] += 1
 
-    html = render_template('_recipe.html', recipe=recipe)
-
-    return turbo.stream([
-        turbo.replace(html, target='recipe'),
-    ])
+    return render_template('_recipe.html', recipe=recipe)
 
 @app.route("/exclude/<ingredient>")
 def exclude(ingredient):

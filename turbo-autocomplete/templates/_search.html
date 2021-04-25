@@ -1,7 +1,7 @@
 <turbo-frame id="search-results">
   {% for ingredient in ingredients %}
     <div>
-      <a href="{{ url_for('add', ingredient=ingredient.name) }}">
+      <a href="{{ url_for('add', ingredient=ingredient.name) }}" data-turbo-frame="recipe">
         <strong>{{ ingredient.strong }}</strong>{{ ingredient.non_strong }}
       </a>
     </div>
