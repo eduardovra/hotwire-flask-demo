@@ -6,13 +6,13 @@ These examples were used in this [blog post][https://eduardovra.github.io].
 
 # Installing
 
-``` bash
+```bash
 pipenv install
 ```
 
 # Running
 
-``` bash
+```bash
 pipenv shell
 cd <project dir>
 flask run
