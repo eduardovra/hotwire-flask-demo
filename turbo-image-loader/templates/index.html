@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
   <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
     {{ turbo() }}
   </head>
   <body>
@@ -14,7 +15,7 @@
 
     <turbo-frame id="images">
       {% for seq in range(0, counter) %}
-        {% include '_image_loader.html' %}
+        {% include '_image.html' %}
       {% endfor %}
     </turbo-frame>
 
